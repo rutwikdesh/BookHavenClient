@@ -13,9 +13,6 @@ const BookContainer = () => {
   }, [dispatch]);
 
   const books = useSelector((state) => state.books);
-  books.map((book) => {
-    console.log(book);
-  });
 
   return (
     <Box className="flex justify-center">
