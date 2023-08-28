@@ -15,6 +15,11 @@ const initialState = {
       releaseYear: 2020,
     },
   ],
+  promise: {
+    isPending: false,
+    isFulfilled: false,
+    isErrored: false,
+  },
 };
 
 export const stateSlice = createSlice({
@@ -24,8 +29,18 @@ export const stateSlice = createSlice({
     setBooks: (state, action) => {
       state.books = action.payload.books;
     },
+    setIsPending: (state) => {
+      state.promise = { isPending: true, isFulfilled: false, isErrored: false };
+    },
+    setIsError: (state) => {
+      state.promise = { isPending: false, isFulfilled: false, isErrored: true };
+    },
+    setIsFulfilled: (state) => {
+      state.promise = { isPending: false, isFulfilled: true, isErrored: false };
+    },
   },
 });
 
-export const { setBooks } = stateSlice.actions;
+export const { setBooks, setIsPending, setIsError, setIsFulfilled } =
+  stateSlice.actions;
 export default stateSlice.reducer;

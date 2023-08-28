@@ -6,13 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 import BookList from "./BookList";
 
 const BookContainer = () => {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   getBookAction(dispatch);
-  // }, [dispatch]);
+  useEffect(() => {
+    getBookAction(dispatch);
+  }, [dispatch]);
 
   const books = useSelector((state) => state.books);
+  books.map((book) => {
+    console.log(book);
+  });
 
   return (
     <Box className="flex justify-center">

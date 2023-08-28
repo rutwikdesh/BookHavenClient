@@ -1,8 +1,9 @@
 import getBooksService from "./bookService";
-import { setBooks } from "..";
+import { setBooks, setIsError, setIsFulfilled, setIsPending } from "..";
 
 const getBookAction = async (dispatch) => {
   try {
+    dispatch(setIsPending());
     const books = await getBooksService();
 
     dispatch(
@@ -10,8 +11,10 @@ const getBookAction = async (dispatch) => {
         books: books.data,
       })
     );
+    dispatch(setIsFulfilled());
   } catch (error) {
-    console.log(error);
+    dispatch(setIsError());
+    console.log(error.message);
   }
 };
 
