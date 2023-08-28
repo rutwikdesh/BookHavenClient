@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import React, { useEffect } from "react";
 import BookFilter from "./BookFilter";
-import getBookAction from "../../state/book/bookAction";
+import { getBooksAction } from "../../state/book/bookAction";
 import { useDispatch, useSelector } from "react-redux";
 import BookList from "./BookList";
 
@@ -9,7 +9,7 @@ const BookContainer = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    getBookAction(dispatch);
+    getBooksAction(dispatch);
   }, [dispatch]);
 
   const books = useSelector((state) => state.books);

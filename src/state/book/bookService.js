@@ -8,4 +8,11 @@ const getBooksService = () =>
     },
   });
 
-export default getBooksService;
+const getBooksByTitleService = (title) =>
+  axios.get(`${baseurl}/api/v1/books/${title}`, {
+    headers: {
+      "Access-Control-Allow-Origin": "*",
+    },
+  });
+
+export { getBooksService, getBooksByTitleService };

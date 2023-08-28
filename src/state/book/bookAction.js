@@ -1,7 +1,7 @@
-import getBooksService from "./bookService";
+import { getBooksService, getBooksByTitleService } from "./bookService";
 import { setBooks, setIsError, setIsFulfilled, setIsPending } from "..";
 
-const getBookAction = async (dispatch) => {
+const getBooksAction = async (dispatch) => {
   try {
     dispatch(setIsPending());
     const books = await getBooksService();
@@ -18,4 +18,21 @@ const getBookAction = async (dispatch) => {
   }
 };
 
-export default getBookAction;
+const getBooksByTitleAction = async (dispatch, title) => {
+  try {
+    if (title !== "") {
+      const books = await getBooksByTitleService(title);
+      dispatch(
+        setBooks({
+          books: books.data,
+        })
+      );
+    } else {
+      getBooksAction(dispatch);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export { getBooksAction, getBooksByTitleAction };
